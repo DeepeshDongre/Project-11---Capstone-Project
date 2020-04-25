@@ -1,0 +1,17 @@
+<script src="https://unpkg.com/@tensorflow/tfjs"></script>
+<script src="https://unpkg.com/@tensorflow/tfjs-automl"></script>
+<img id="Green" crossorigin="anonymous" src="C:\Users\ddongre\DeepeshDongre\Personal\SystemEngg\NanoDegreeProgram_Udacity\CapstoneProject\dataset\dataset-sdcnd-capstone_Train_jpeg\Simulator_Imgs\Green\left0821.jpg">
+<script>
+async function run() {
+  const model = await tf.automl.loadObjectDetection('model.json');
+  const img = document.getElementById('Green');
+  const options = {score: 0.5, iou: 0.5, topk: 20};
+  const predictions = await model.detect(img, options);
+  console.log(predictions);
+  // Show the resulting object on the page.
+  const pre = document.createElement('pre');
+  pre.textContent = JSON.stringify(predictions, null, 2);
+  document.body.append(pre);
+}
+run();
+</script>
